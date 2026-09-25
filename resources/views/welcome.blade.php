@@ -17,8 +17,11 @@
             </style>
         @endif
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
+    <body class="antialiased">
+        
+        <!-- 1. THE WRAPPER (Receives the filter) -->
+        <div id="a11y-content-wrapper" class="w-full min-h-screen overflow-x-hidden">
+            <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
                     @auth
@@ -219,5 +222,103 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+        </div> <!-- END OF WRAPPER -->
+
+        <style>
+            .a11y-dyslexia * { font-family: 'Comic Sans MS', 'OpenDyslexic', sans-serif !important; }
+            .a11y-highlight a { background-color: #ffeb3b !important; color: #000 !important; text-decoration: underline !important; font-weight: bold !important; }
+            .a11y-spacing * { letter-spacing: 0.12em !important; }
+            .a11y-lineheight * { line-height: 2 !important; }
+        </style>
+
+        <!-- ALPINE TELEPORT: FORCES FABS TO THE ROOT BODY AT RUNTIME -->
+        <template x-teleport="body">
+            
+            <!-- FLOATING WHATSAPP -->
+            <div x-data="{ openWa: false }" class="fixed bottom-6 right-4 md:right-6 z-[99999] flex flex-col items-end">
+                <!-- WA Modal -->
+                <div x-show="openWa" x-transition @click.away="openWa = false" style="display: none;" class="mb-4 w-72 md:w-80 bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 max-h-[70vh] overflow-y-auto">
+                    <div class="bg-[#25D366] p-4 text-white font-bold flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.128.552 4.168 1.602 5.975L.05 24l6.155-1.524A11.944 11.944 0 0012.03 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0z"/></svg> Mulai Percakapan
+                        </div>
+                        <button @click="openWa = false" type="button" class="text-white hover:text-gray-200"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+                    </div>
+                    <div class="p-4 bg-gray-50 text-xs text-gray-500 mb-2">Klik link dibawah ini :</div>
+                    <div class="p-2 space-y-2">
+                        <a href="https://wa.me/6281281435091" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border-l-4 border-[#25D366] shadow-sm hover:bg-gray-50 transition">
+                            <span class="text-sm font-semibold text-gray-700">Helpdesk Kemdikbud</span>
+                        </a>
+                        <a href="https://chat.whatsapp.com/CfzJauo1F17I5sTHXmme2L?mode=r_c" target="_blank" class="flex items-center gap-3 p-3 bg-white rounded-lg border-l-4 border-[#25D366] shadow-sm hover:bg-gray-50 transition">
+                            <span class="text-sm font-semibold text-gray-700">ULT BPMP Sultra</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- WA Button -->
+                <button @click="openWa = !openWa" type="button" class="w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 md:w-7 md:h-7 fill-current" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.128.552 4.168 1.602 5.975L.05 24l6.155-1.524A11.944 11.944 0 0012.03 24c6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0z"/></svg>
+                </button>
+            </div>
+
+            <!-- FLOATING ACCESSIBILITY -->
+            <div x-data="{ 
+                    openAccess: false,
+                    textSize: 100,
+                    increaseText() { this.textSize += 10; document.documentElement.style.fontSize = this.textSize + '%'; },
+                    decreaseText() { this.textSize -= 10; document.documentElement.style.fontSize = this.textSize + '%'; },
+                    toggleDyslexia() { document.body.classList.toggle('a11y-dyslexia'); },
+                    toggleHighlight() { document.body.classList.toggle('a11y-highlight'); },
+                    toggleSpacing() { document.body.classList.toggle('a11y-spacing'); },
+                    toggleLineHeight() { document.body.classList.toggle('a11y-lineheight'); },
+                    resetAll() {
+                        this.textSize = 100;
+                        document.documentElement.style.fontSize = '100%';
+                        document.body.classList.remove('a11y-dyslexia', 'a11y-highlight', 'a11y-spacing', 'a11y-lineheight');
+                    }
+                }" class="fixed bottom-6 left-4 md:left-6 z-[99999] flex flex-col items-start">
+                
+                <!-- Access Modal -->
+                <div x-show="openAccess" x-transition @click.away="openAccess = false" style="display: none;" class="mb-4 w-[90vw] md:w-[400px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 max-h-[75vh] overflow-y-auto">
+                    <div class="bg-red-600 p-4 text-white font-bold flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                            Menu Aksesibilitas
+                        </div>
+                        <button @click="openAccess = false" type="button" class="text-white hover:text-gray-200"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+                    </div>
+                    
+                    <div class="p-4 space-y-4">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Teks dan Membaca</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" @click="increaseText()" class="p-3 border rounded-xl text-sm font-medium hover:bg-gray-50 text-slate-700 flex flex-col items-center gap-2"><span class="text-lg font-bold">A+</span> Perbesar Teks</button>
+                            <button type="button" @click="decreaseText()" class="p-3 border rounded-xl text-sm font-medium hover:bg-gray-50 text-slate-700 flex flex-col items-center gap-2"><span class="text-lg font-bold">A-</span> Perkecil Teks</button>
+                        </div>
+                        
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-4">Penyesuaian Visual</p>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" @click="toggleDyslexia()" class="p-3 border rounded-xl text-sm font-medium hover:bg-gray-50 text-slate-700 flex flex-col items-center gap-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Font Disleksia
+                            </button>
+                            <button type="button" @click="toggleHighlight()" class="p-3 border rounded-xl text-sm font-medium hover:bg-gray-50 text-slate-700 flex flex-col items-center gap-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg> Sorot Tautan
+                            </button>
+                            <button type="button" @click="toggleSpacing()" class="p-3 border rounded-xl text-sm font-medium hover:bg-gray-50 text-slate-700 flex flex-col items-center gap-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg> Jarak Huruf
+                            </button>
+                            <button type="button" @click="toggleLineHeight()" class="p-3 border rounded-xl text-sm font-medium hover:bg-gray-50 text-slate-700 flex flex-col items-center gap-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg> Tinggi Baris
+                            </button>
+                        </div>
+                        
+                        <button type="button" @click="resetAll()" class="w-full mt-4 bg-red-600 text-white font-bold py-3 rounded-xl hover:bg-red-700 transition">Atur Ulang Pengaturan</button>
+                    </div>
+                </div>
+                
+                <!-- Trigger Button -->
+                <button @click="openAccess = !openAccess" type="button" class="w-14 h-14 bg-purple-700 text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                </button>
+            </div>
+        </template>
     </body>
 </html>
