@@ -1,58 +1,57 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏛️ PPID BPMP Provinsi Sulawesi Tenggara
+> **Official Public Information Management & Documentation Portal**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat&logo=laravel&logoColor=white)](#)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](#)
+[![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=flat&logo=alpinedotjs&logoColor=black)](#)
+[![PHP](https://img.shields.io/badge/PHP-%3E%3D%208.1-777BB4?style=flat&logo=php&logoColor=white)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
-## About Laravel
+Portal resmi Pejabat Pengelola Informasi dan Dokumentasi (PPID) Balai Penjaminan Mutu Pendidikan (BPMP) Provinsi Sulawesi Tenggara. Website ini dirancang untuk memfasilitasi keterbukaan informasi publik yang transparan, mudah diakses (*inclusive web accessibility*), serta terintegrasi langsung dengan layanan bantuan pengaduan masyarakat.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📖 Ringkasan Proyek (Overview)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Sistem ini melayani permohonan informasi publik secara daring dengan mengedepankan kepatuhan aksesibilitas web. Antarmuka web dioptimalkan menggunakan kombinasi **Tailwind CSS** dan **Alpine.js** untuk menghadirkan fitur aksesibilitas dinamis tanpa kendala *CSS stacking context* maupun layout *glitch*. Sistem juga dilengkapi *Floating Action Button* (FAB) interaktif menuju layanan bantuan resmi.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Fitur Unggulan
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* **Advanced Accessibility Suite**: Widget aksesibilitas ramah disabilitas yang mencakup:
+  * Penyesuaian font khusus pembaca disleksia (*Dyslexia Font*).
+  * Penyorot tautan interaktif (*Highlight Links*).
+  * Pengaturan jarak teks (*Letter Spacing* & *Line Height*).
+  * Diarsiteki secara aman untuk mencegah *bug* tampilan pada elemen `position: fixed`.
+* **Integrated Helpdesk FAB**: Tombol bantuan melayang (*floating widget*) untuk mengarahkan pengguna secara instan ke WhatsApp ULT BPMP Sultra dan Helpdesk Kemendikbudristek.
+* **Responsive Navigation**: Sinkronisasi navigasi desktop dan menu mobile (*drawer*) yang mulus.
+* **Shared Hosting Ready**: Struktur kode dan konfigurasi aset telah disesuaikan agar siap di-*deploy* pada layanan web hosting berbasis cPanel maupun free tier (seperti InfinityFree).
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🛠️ Tumpukan Teknologi (Tech Stack)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+* **Backend Framework**: Laravel
+* **Frontend UI & Styling**: Tailwind CSS
+* **Client-side Interactivity**: Alpine.js
+* **Template Engine**: Laravel Blade
+* **Database**: MySQL / MariaDB
+* **Languages**: PHP (>= 8.1), JavaScript, HTML5, CSS3
 
-```bash
-composer require laravel/boost --dev
+---
 
-php artisan boost:install
-```
+## 📂 Struktur Direktori Ringkas
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```text
+ppid-bpmpsultra/
+├── app/                  # Controller, Models, dan Logika Bisnis
+├── database/             # Migrasi tabel dan seeder database
+├── public/               # File aset publik hasil build (Vite/Mix)
+├── resources/
+│   ├── css/              # Konfigurasi Tailwind CSS
+│   ├── js/               # Inisialisasi Alpine.js & skrip custom
+│   └── views/            # Template Blade (tampilan portal & widget)
+├── routes/               # Routing aplikasi web
+├── .env.example          # Contoh variabel lingkungan
+└── composer.json         # Dependensi PHP
